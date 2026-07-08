@@ -424,9 +424,27 @@
   margin-bottom: var(--space-4);
 }
 
-.error-text {
+/* .error-text {
   color: #ef4444;
   font-size: 0.85rem;
   margin-top: -8px;
   margin-bottom: 12px;
+} */
+
+.input-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.error-text {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #ef4444;
 }

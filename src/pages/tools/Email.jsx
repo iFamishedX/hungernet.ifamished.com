@@ -104,7 +104,7 @@ export default function EmailGuide() {
 
             {/* Input row */}
             <div className="input-row">
-              <div>
+              <div className="input-field">
                 <InputBox
                   value={email}
                   onChange={setEmail}
@@ -115,7 +115,7 @@ export default function EmailGuide() {
                 )}
               </div>
 
-              <div>
+              <div className="input-field">
                 <InputBox
                   value={name}
                   onChange={setName}
@@ -126,14 +126,14 @@ export default function EmailGuide() {
                 )}
               </div>
 
-              <div>
+              <div className="input-field">
                 <InputBox
                   value={password}
                   onChange={setPassword}
                   placeholder="SMTP Password (cfut_...)"
                 />
                 {showErrors && !validPassword && (
-                  <p className="error-text">Password must be a valid Cloudflare API token.</p>
+                  <p className="error-text">Password must begin with cfut_</p>
                 )}
               </div>
             </div>
