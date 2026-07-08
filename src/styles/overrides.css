@@ -435,20 +435,23 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--space-4);
-  margin-bottom: var(--space-4);
 }
 
 .input-field {
-  position: relative;
+  width: 100%;
 }
 
-.error-text {
-  position: absolute;
-  left: 0;
-  top: 100%;
-  transform: translateY(-6px);
+.input-wrapper {
+  position: relative;
   width: 100%;
+}
+
+/* Error text INSIDE the input box container */
+.input-error {
+  position: absolute;
+  bottom: -18px; /* hugs the bottom border perfectly */
+  left: 0;
   font-size: 0.8rem;
-  line-height: 1.2;
   color: #ef4444;
+  pointer-events: none;
 }

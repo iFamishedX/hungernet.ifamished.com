@@ -105,36 +105,42 @@ export default function EmailGuide() {
             {/* Input row */}
             <div className="input-row">
               <div className="input-field">
-                <InputBox
-                  value={email}
-                  onChange={setEmail}
-                  placeholder="Email (you@example.com)"
-                />
-                {showErrors && !validEmail && (
-                  <span className="error-text">Please enter a valid email address.</span>
-                )}
+                <div className="input-wrapper">
+                  <InputBox
+                    value={email}
+                    onChange={setEmail}
+                    placeholder="Email (you@example.com)"
+                  />
+                  {showErrors && !validEmail && (
+                    <div className="input-error">Please enter a valid email address.</div>
+                  )}
+                </div>
               </div>
 
               <div className="input-field">
-                <InputBox
-                  value={name}
-                  onChange={setName}
-                  placeholder="Name (John Doe)"
-                />
-                {showErrors && !validName && (
-                  <span className="error-text">Name cannot be empty.</span>
-                )}
+                <div className="input-wrapper">
+                  <InputBox
+                    value={name}
+                    onChange={setName}
+                    placeholder="Name (John Doe)"
+                  />
+                  {showErrors && !validName && (
+                    <div className="input-error">Name cannot be empty.</div>
+                  )}
+                </div>
               </div>
 
               <div className="input-field">
-                <InputBox
-                  value={password}
-                  onChange={setPassword}
-                  placeholder="SMTP Password (cfut_...)"
-                />
-                {showErrors && !validPassword && (
-                  <span className="error-text">Password must begin with cfut_</span>
-                )}
+                <div className="input-wrapper">
+                  <InputBox
+                    value={password}
+                    onChange={setPassword}
+                    placeholder="API Token (cfut_...)"
+                  />
+                  {showErrors && !validPassword && (
+                    <div className="input-error">API token must begin with cfut_</div>
+                  )}
+                </div>
               </div>
             </div>
 
