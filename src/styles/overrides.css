@@ -450,9 +450,9 @@
 .input-error {
   position: absolute;
   bottom: -18px;
-  left: 0;
+  left: 2px;
   width: 100%;
-  text-align: center;
+  text-align: left;
   font-size: 0.8rem;
   color: #ef4444;
   pointer-events: none;
