@@ -409,3 +409,10 @@
   margin-top: var(--space-6);
   padding: var(--space-5);
 }
+
+.smtp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-4) 0;
+}

@@ -47,10 +47,8 @@ export default function EmailGuide() {
   }, []);
 
   // Validate email
-  const validEmail =
-    email.includes("@") &&
-    email.split("@")[0].length > 0 &&
-    email.split("@")[1].includes(".");
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const validEmail = emailRegex.test(email);
 
   const ready = validEmail && name && token && password;
 
@@ -118,8 +116,7 @@ export default function EmailGuide() {
             <GlassButton
               size="md"
               variant="primary"
-              style={{ marginTop: "var(--space-4)" }}
-              disabled={!ready}
+              disabled={!validEmail || !name || !token || !password}
               onClick={generateGuide}
             >
               <Icon name="check" size={16} />
@@ -178,11 +175,13 @@ export default function EmailGuide() {
                 q="3. SMTP Configuration"
                 a={
                   <>
-                    <CopyField label="SMTP Server" value="smtp.mx.cloudflare.net" />
-                    <CopyField label="Port" value="465" />
-                    <CopyField label="Username" value={token} />
-                    <CopyField label="Password" value={password} />
-                    <CopyField label="Security" value="SSL" />
+                    <div className="smtp-grid">
+                      <CopyField label="SMTP Server" value="smtp.mx.cloudflare.net" />
+                      <CopyField label="Port" value="465" />
+                      <CopyField label="Username" value={token} />
+                      <CopyField label="Password" value={password} />
+                      <CopyField label="Security" value="SSL" />
+                    </div>
 
                     <p style={{ marginTop: "var(--space-3)" }}>
                       Click <strong>Add account</strong>. Google will send a verification email —
