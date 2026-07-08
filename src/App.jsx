@@ -2,11 +2,11 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import { Navbar, Footer, ScrollToTop } from "ifamished-ui"
 
 import Home from "./pages/Home"
-import Email from "./pages/guides/Email"
+import Email from "./pages/tools/Email"
 
 const navItems = [
   { to: "/", label: "Home", end: true },
-  { to: "/guides/email", label: "Email Guide" },
+  { to: "/tools/email", label: "Email Guide" },
 ]
 
 const socials = [
@@ -28,7 +28,7 @@ export default function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/guides/email" element={<Email />} />
+          <Route path="/tools/email" element={<Email />} />
         </Routes>
       </div>
 

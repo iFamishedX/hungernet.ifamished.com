@@ -4,7 +4,7 @@ const highlights = [
   {
     icon: "cpu",
     title: "Hosting Partner",
-    desc: "Fast, reliable infrastructure for Minecraft servers, web apps, and custom projects — optimized for low latency and high uptime.",
+    desc: "Fast, reliable infrastructure for game servers, web apps, and custom projects — optimized for low latency and high uptime.",
   },
   {
     icon: "folder",

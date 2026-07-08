@@ -25,6 +25,9 @@ export default function EmailGuide() {
   // Guide visibility
   const [generated, setGenerated] = useState(false);
 
+  // Error visibility
+  const [showErrors, setShowErrors] = useState(false);
+
   // Parse email
   useEffect(() => {
     const emailRegex =
@@ -53,14 +56,18 @@ export default function EmailGuide() {
   const validEmail = emailRegex.test(email);
 
   const validPassword = password.startsWith("cfut_");
+  const validName = name.trim().length > 0;
 
-  const ready = validEmail && name && validPassword;
+  const ready = validEmail && validName && validPassword;
 
   // Masked password for display
   const maskedPassword = validPassword ? "cfut_••••••••••••••••••••" : password;
 
   const generateGuide = () => {
-    if (!ready) return;
+    if (!ready) {
+      setShowErrors(true);
+      return;
+    }
 
     setParams({
       email,
@@ -72,11 +79,12 @@ export default function EmailGuide() {
   };
 
   const reset = () => {
-    navigate("/guides/email");
+    navigate("/tools/email");
     setEmail("");
     setName("");
     setPassword("");
     setGenerated(false);
+    setShowErrors(false);
   };
 
   return (
@@ -96,29 +104,43 @@ export default function EmailGuide() {
 
             {/* Input row */}
             <div className="input-row">
-              <InputBox
-                value={email}
-                onChange={setEmail}
-                placeholder="Email (you@example.com)"
-              />
+              <div>
+                <InputBox
+                  value={email}
+                  onChange={setEmail}
+                  placeholder="Email (you@example.com)"
+                />
+                {showErrors && !validEmail && (
+                  <p className="error-text">Please enter a valid email address.</p>
+                )}
+              </div>
 
-              <InputBox
-                value={name}
-                onChange={setName}
-                placeholder="Name (John Doe)"
-              />
+              <div>
+                <InputBox
+                  value={name}
+                  onChange={setName}
+                  placeholder="Name (John Doe)"
+                />
+                {showErrors && !validName && (
+                  <p className="error-text">Name cannot be empty.</p>
+                )}
+              </div>
 
-              <InputBox
-                value={password}
-                onChange={setPassword}
-                placeholder="API Token (cfut_...)"
-              />
+              <div>
+                <InputBox
+                  value={password}
+                  onChange={setPassword}
+                  placeholder="SMTP Password (cfut_...)"
+                />
+                {showErrors && !validPassword && (
+                  <p className="error-text">Password must be a valid Cloudflare API token.</p>
+                )}
+              </div>
             </div>
 
             <GlassButton
               size="md"
               variant="primary"
-              disabled={!ready}
               onClick={generateGuide}
             >
               <Icon name="check" size={16} />
