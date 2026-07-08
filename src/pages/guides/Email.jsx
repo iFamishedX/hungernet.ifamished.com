@@ -16,7 +16,6 @@ export default function EmailGuide() {
   // Fields
   const [email, setEmail] = useState(params.get("email") || "");
   const [name, setName] = useState(params.get("name") || "");
-  const [token, setToken] = useState(params.get("token") || "");
   const [password, setPassword] = useState(params.get("password") || "");
 
   // Parsed email
@@ -26,31 +25,37 @@ export default function EmailGuide() {
   // Guide visibility
   const [generated, setGenerated] = useState(false);
 
-  // Parse email when changed
+  // Parse email
   useEffect(() => {
-    if (!email.includes("@")) {
+    const emailRegex =
+      /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+    if (!emailRegex.test(email)) {
       setUsername("");
       setDomain("");
       return;
     }
 
     const [user, dom] = email.split("@");
-    setUsername(user || "");
-    setDomain(dom || "");
+    setUsername(user);
+    setDomain(dom);
   }, [email]);
 
-  // If URL params exist → auto-generate
+  // Auto-generate if URL params exist
   useEffect(() => {
-    if (params.get("email") && params.get("token") && params.get("password")) {
+    if (params.get("email") && params.get("password")) {
       setGenerated(true);
     }
   }, []);
 
-  // Validate email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // Validation
+  const emailRegex =
+    /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
   const validEmail = emailRegex.test(email);
 
-  const ready = validEmail && name && token && password;
+  const validPassword = password.startsWith("cfut_");
+
+  const ready = validEmail && name && validPassword;
 
   const generateGuide = () => {
     if (!ready) return;
@@ -58,7 +63,6 @@ export default function EmailGuide() {
     setParams({
       email,
       name,
-      token,
       password,
     });
 
@@ -69,7 +73,6 @@ export default function EmailGuide() {
     navigate("/guides/email");
     setEmail("");
     setName("");
-    setToken("");
     setPassword("");
     setGenerated(false);
   };
@@ -78,8 +81,8 @@ export default function EmailGuide() {
     <div className="page">
       <div className="page-header fade-in-up">
         <h1>Email Setup Guide</h1>
-        <p>Generate a personalized Gmail + Cloudflare SMTP guide.</p>
-    </div>
+        <p>Generate a personalized HungerNet email setup guide.</p>
+      </div>
 
       <section className="section">
         {!generated && (
@@ -89,34 +92,31 @@ export default function EmailGuide() {
               Fill out the fields below to generate a personalized setup guide.
             </p>
 
-            <InputBox
-              value={email}
-              onChange={setEmail}
-              placeholder="Email (example@hungernet.ifamished.com)"
-            />
+            {/* Input row */}
+            <div className="input-row">
+              <InputBox
+                value={email}
+                onChange={setEmail}
+                placeholder="Email (you@example.com)"
+              />
 
-            <InputBox
-              value={name}
-              onChange={setName}
-              placeholder="Name (Display name in Gmail)"
-            />
+              <InputBox
+                value={name}
+                onChange={setName}
+                placeholder="Name (John Doe)"
+              />
 
-            <InputBox
-              value={token}
-              onChange={setToken}
-              placeholder="Cloudflare API Token"
-            />
-
-            <InputBox
-              value={password}
-              onChange={setPassword}
-              placeholder="SMTP Password (cfut_...)"
-            />
+              <InputBox
+                value={password}
+                onChange={setPassword}
+                placeholder="SMTP Password (cfut_...)"
+              />
+            </div>
 
             <GlassButton
               size="md"
               variant="primary"
-              disabled={!validEmail || !name || !token || !password}
+              disabled={!ready}
               onClick={generateGuide}
             >
               <Icon name="check" size={16} />
@@ -131,8 +131,7 @@ export default function EmailGuide() {
               <div className="section-label">Setup Guide</div>
               <h2>Your Configuration</h2>
               <p>
-                This guide is customized for{" "}
-                <strong>{email}</strong>.
+                This guide is customized for <strong>{email}</strong>.
               </p>
             </div>
 
@@ -178,14 +177,14 @@ export default function EmailGuide() {
                     <div className="smtp-grid">
                       <CopyField label="SMTP Server" value="smtp.mx.cloudflare.net" />
                       <CopyField label="Port" value="465" />
-                      <CopyField label="Username" value={token} />
+                      <CopyField label="Username" value="api_token" />
                       <CopyField label="Password" value={password} />
                       <CopyField label="Security" value="SSL" />
                     </div>
 
                     <p style={{ marginTop: "var(--space-3)" }}>
-                      Click <strong>Add account</strong>. Google will send a verification email —
-                      open it and confirm.
+                      Click <strong>Add account</strong>. Google will send a verification
+                      email — open it and confirm.
                     </p>
                   </>
                 }
@@ -196,9 +195,8 @@ export default function EmailGuide() {
                 a={
                   <>
                     <p>
-                      You can now send mail from{" "}
-                      <strong>{email}</strong> directly through Gmail using Cloudflare’s
-                      SMTP service.
+                      You can now send mail from <strong>{email}</strong> directly through
+                      Gmail using Cloudflare’s SMTP service.
                     </p>
                   </>
                 }
