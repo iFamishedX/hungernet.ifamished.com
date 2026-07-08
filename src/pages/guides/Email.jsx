@@ -162,14 +162,6 @@ export default function EmailGuide() {
                       <li>Send mail as</li>
                       <li>Add another email address</li>
                     </ul>
-
-                    <p>Enter:</p>
-                    <ul style={{ paddingLeft: "1.5rem", listStyleType: "disc" }}>
-                      <li>Name: <strong>{name}</strong></li>
-                      <li>Email address: <strong>{email}</strong></li>
-                      <li>Uncheck “Treat as an alias”</li>
-                      <li>Click "Next Step"</li>
-                    </ul>
                   </>
                 }
               />
