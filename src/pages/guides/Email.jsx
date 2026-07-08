@@ -141,8 +141,9 @@ export default function EmailGuide() {
                 a={
                   <>
                     <p>
-                      Before Gmail can send mail using your domain, forwarding must be
-                      enabled. You will receive a Cloudflare verification email — open it
+                      Before you can receive mail using your domain, forwarding must be
+                      enabled. DM me the email you are setting up, and I'll complete the steps on my end.
+                      You will receive a Cloudflare verification email — open it
                       and approve the forwarding request.
                     </p>
                   </>
@@ -153,15 +154,17 @@ export default function EmailGuide() {
                 q="2. Add Your Address in Gmail"
                 a={
                   <>
-                    <p>Inside Gmail:</p>
-                    <ul>
-                      <li>Settings → See all settings</li>
+                    <p><strong>Inside Gmail:</strong></p>
+                    <ul style={{ paddingLeft: "1.5rem", listStyleType: "disc" }}>
+                      <li>Settings</li>
+                      <li>See all settings</li>
                       <li>Accounts and import</li>
-                      <li>Send mail as → Add another email address</li>
+                      <li>Send mail as</li>
+                      <li>Add another email address</li>
                     </ul>
 
                     <p>Enter:</p>
-                    <ul>
+                    <ul style={{ paddingLeft: "1.5rem", listStyleType: "disc" }}>
                       <li>Name: <strong>{name}</strong></li>
                       <li>Email address: <strong>{email}</strong></li>
                       <li>Uncheck “Treat as an alias”</li>
@@ -172,7 +175,24 @@ export default function EmailGuide() {
               />
 
               <FaqAccordion
-                q="3. SMTP Configuration"
+                q="3. Information Setup"
+                a={
+                  <>
+                    <div className="smtp-grid">
+                      <CopyField label="Name" value={name} />
+                      <CopyField label="Email address" value={email} />
+                      <CopyField label="Treat as an alias" value="No" />
+                    </div>
+
+                    <p style={{ marginTop: "var(--space-3)" }}>
+                      Click <strong>Next Step</strong>.
+                    </p>
+                  </>
+                }
+              />
+              
+              <FaqAccordion
+                q="4. SMTP Configuration"
                 a={
                   <>
                     <div className="smtp-grid">
@@ -192,7 +212,7 @@ export default function EmailGuide() {
               />
 
               <FaqAccordion
-                q="4. Finished"
+                q="5. Finished"
                 a={
                   <>
                     <p>
