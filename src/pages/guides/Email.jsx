@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GlassCard, GlassButton, HeroHeader } from "ifamished-ui";
+import { GlassCard, GlassButton } from "ifamished-ui";
 
 export default function EmailGuide() {
   const [user, setUser] = useState("");
@@ -11,10 +11,10 @@ export default function EmailGuide() {
 
   return (
     <div className="page">
-      <HeroHeader
-        title="Email Setup Guide"
-        subtitle="Generate a personalized Gmail + Cloudflare SMTP setup guide."
-      />
+      <div className="page-header fade-in-up">
+        <h1>FAQ</h1>
+        <p>Answers to the most common questions about the Hunger SMP.</p>
+    </div>
 
       <section className="section">
         <GlassCard className="input-card">
