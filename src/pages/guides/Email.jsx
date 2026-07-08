@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  CopyField,
   GlassCard,
   GlassButton,
   InputBox,
@@ -177,18 +178,15 @@ export default function EmailGuide() {
                 q="3. SMTP Configuration"
                 a={
                   <>
-                    <GlassCard className="smtp-card" style={{ margin: "var(--space-4) 0" }}>
-                      <pre>
-SMTP Server: smtp.mx.cloudflare.net
-Port: 465
-Username: {token}
-Password: {password}
-Security: SSL
-                      </pre>
-                    </GlassCard>
-                    <p>
-                      Click <strong>Add account</strong>. Google will send a verification
-                      email — open it and confirm.
+                    <CopyField label="SMTP Server" value="smtp.mx.cloudflare.net" />
+                    <CopyField label="Port" value="465" />
+                    <CopyField label="Username" value={token} />
+                    <CopyField label="Password" value={password} />
+                    <CopyField label="Security" value="SSL" />
+
+                    <p style={{ marginTop: "var(--space-3)" }}>
+                      Click <strong>Add account</strong>. Google will send a verification email —
+                      open it and confirm.
                     </p>
                   </>
                 }
