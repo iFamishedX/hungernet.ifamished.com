@@ -439,12 +439,15 @@
 }
 
 .input-field {
-  display: flex;
-  flex-direction: column;
+  position: relative;
 }
 
 .error-text {
-  margin-top: 4px;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  transform: translateY(2px);
+  width: 100%;
   font-size: 0.8rem;
   line-height: 1.2;
   color: #ef4444;
