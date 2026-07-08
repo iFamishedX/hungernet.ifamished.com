@@ -18,7 +18,7 @@ export default function App() {
     <>
       <Navbar
         brand="HungerNet"
-        brandDotColor="#38bdf8"
+        brandDotColor="#38f8cf"
         navItems={navItems}
       />
 

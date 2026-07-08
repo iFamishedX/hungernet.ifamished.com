@@ -2,12 +2,12 @@ import { GlassCard, GlassButton, usePageTitle, Icon, StatPill } from "ifamished-
 
 const highlights = [
   {
-    icon: "server",
-    title: "High‑Performance Hosting",
+    icon: "cpu",
+    title: "Hosting Partner",
     desc: "Fast, reliable infrastructure for Minecraft servers, web apps, and custom projects — optimized for low latency and high uptime.",
   },
   {
-    icon: "layers",
+    icon: "folder",
     title: "Unified Project Hub",
     desc: "All HungerNet projects — OptiFine for Fabric, Raven Client, New Moon, Hunger SMP, and more — managed in one ecosystem.",
   },
@@ -41,7 +41,7 @@ export default function Home() {
         <GlassCard variant="hero" className="hero fade-in-up">
           <div className="hero-eyebrow">
             <span className="hero-eyebrow-dot" />
-            Project & Hosting Network
+            Projects & Tools
           </div>
 
           <h1 className="hero-name">
@@ -62,7 +62,15 @@ export default function Home() {
           </div>
 
           <div className="hero-actions">
-            <GlassButton to="/tools" variant="primary">
+            <GlassButton to="/hosting" variant="primary">
+              <Icon name="cpu" size={16} />
+              Get Hosting
+            </GlassButton>
+            <GlassButton to="/projects" variant="ghost">
+              <Icon name="folder" size={16} />
+              View Projects
+            </GlassButton>
+            <GlassButton to="/tools" variant="ghost">
               <Icon name="tool" size={16} />
               View Tools
             </GlassButton>
@@ -106,7 +114,15 @@ export default function Home() {
         <p>Browse projects, use tools, or dive into the docs to learn more.</p>
 
         <div className="cta-actions">
-          <GlassButton to="/tools" variant="primary">
+          <GlassButton to="/hosting" variant="primary">
+            <Icon name="cpu" size={16} />
+            Hosting
+          </GlassButton>
+          <GlassButton to="/projects" variant="ghost">
+            <Icon name="folder" size={16} />
+            Projects
+          </GlassButton>
+          <GlassButton to="/tools" variant="ghost">
             <Icon name="tool" size={16} />
             Tools
           </GlassButton>
