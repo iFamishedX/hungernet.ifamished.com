@@ -83,7 +83,7 @@ export default function EmailGuide() {
     <div className="page">
       <div className="page-header fade-in-up">
         <h1>Email Setup Guide</h1>
-        <p>Generate a personalized HungerNet email setup guide.</p>
+        <p>Generate a Cloudflare email setup guide.</p>
       </div>
 
       <section className="section">
@@ -144,7 +144,7 @@ export default function EmailGuide() {
                   <>
                     <p>
                       Before you can receive mail using your domain, forwarding must be
-                      enabled. DM me the email you are setting up, and I'll complete the steps on my end.
+                      enabled. You can do this by logging into the Cloudflare Dashboard and navigating to the Email Routing section.
                       You will receive a Cloudflare verification email — open it
                       and approve the forwarding request.
                     </p>
@@ -214,8 +214,7 @@ export default function EmailGuide() {
                 a={
                   <>
                     <p>
-                      You can now send mail from <strong>{email}</strong> directly through
-                      Gmail using <strong>HungerNet's</strong> email service.
+                      You can now send mail from <strong>{email}</strong>.
                     </p>
                   </>
                 }

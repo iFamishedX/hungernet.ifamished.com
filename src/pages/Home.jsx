@@ -2,35 +2,33 @@ import { GlassCard, GlassButton, usePageTitle, Icon, StatPill } from "ifamished-
 
 const highlights = [
   {
-    icon: "bolt",
-    title: "Performance",
-    desc: "Powered by Sodium, Lithium, and Starlight — massive FPS gains over vanilla with no gameplay changes.",
+    icon: "server",
+    title: "High‑Performance Hosting",
+    desc: "Fast, reliable infrastructure for Minecraft servers, web apps, and custom projects — optimized for low latency and high uptime.",
   },
   {
-    icon: "palette",
-    title: "Visual Enhancements",
-    desc: "Connected textures, custom skies, zoom, and emissive rendering right out of the box.",
+    icon: "layers",
+    title: "Unified Project Hub",
+    desc: "All HungerNet projects — OptiFine for Fabric, Raven Client, New Moon, Hunger SMP, and more — managed in one ecosystem.",
   },
   {
-    icon: "sparkles",
-    title: "Shader Support",
-    desc: "Full Iris integration. Drop in any OptiFine-compatible shader pack and switch in-game instantly.",
+    icon: "shield",
+    title: "Secure by Default",
+    desc: "Automatic HTTPS, Cloudflare protection, hardened configs, and safe deployment pipelines across every service.",
   },
   {
-    icon: "puzzle",
-    title: "Modpack Friendly",
-    desc: "Lightweight and modular — every mod is independently removable with near-zero conflicts.",
+    icon: "tool",
+    title: "Developer‑Focused",
+    desc: "Built for creators and engineers — clean APIs, modular systems, and tools designed for rapid iteration.",
   },
 ]
 
-const techTags = ["Fabric", "Sodium", "Iris", "Lithium", "Starlight", "DynamicLights"]
+const techTags = ["Infrastructure", "Hosting", "Projects", "Open-Source", "Security"]
 
 const stats = [
-  { value: "8×", label: "FPS Boost" },
-  { value: "500k+", label: "Total Downloads" },
-  { value: "26.2", label: "Latest versions" },
-  { value: "<1 MB", label: "Lightweight Install" },
-  { value: "100%", label: "Free & open-source" },
+  { value: "Developer", label: "Oriented" },
+  { value: "8+", label: "Active Projects" },
+  { value: "100%", label: "Open‑Source" },
 ]
 
 export default function Home() {
@@ -43,36 +41,30 @@ export default function Home() {
         <GlassCard variant="hero" className="hero fade-in-up">
           <div className="hero-eyebrow">
             <span className="hero-eyebrow-dot" />
-            Fabric Mod Collection
+            Project & Hosting Network
           </div>
 
           <h1 className="hero-name">
-            <span className="gradient-text">OptiFine for Fabric</span>
+            <span className="gradient-text">HungerNet</span>
           </h1>
 
           <p className="hero-subtitle">
-            The modern, Fabric-native replacement for OptiFine — faster rendering,
-            beautiful shaders, and zero compromises on compatibility.
+            A unified ecosystem powering developers, modders, websites-designers, and creators.
           </p>
 
-          <div className="tech-tag-list" style={{ justifyContent: "center", marginBottom: "var(--space-4)" }}>
+          <div
+            className="tech-tag-list"
+            style={{ justifyContent: "center", marginBottom: "var(--space-4)" }}
+          >
             {techTags.map((tag) => (
               <span key={tag} className="tech-tag">{tag}</span>
             ))}
           </div>
 
           <div className="hero-actions">
-            <GlassButton to="/download" variant="primary">
-              <Icon name="download" size={16} />
-              Download
-            </GlassButton>
-            <GlassButton to="/features">
-              <Icon name="sparkles" size={16} />
-              Features
-            </GlassButton>
-            <GlassButton to="/install" variant="ghost">
+            <GlassButton to="/tools" variant="primary">
               <Icon name="tool" size={16} />
-              Install Guide
+              View Tools
             </GlassButton>
           </div>
 
@@ -87,11 +79,11 @@ export default function Home() {
       {/* Overview */}
       <section className="section">
         <div className="section-header">
-          <div className="section-label">What's included</div>
-          <h2>Everything OptiFine offered — and more.</h2>
+          <div className="section-label">What HungerNet provides</div>
+          <h2>Your ecosystem for servers, tools, and development.</h2>
           <p>
-            A curated collection of the best Fabric performance and visual mods,
-            pre-configured to work together seamlessly.
+            HungerNet powers everything from Minecraft infrastructure to web apps and modding tools.
+            A single platform for tools, guides, and project management.
           </p>
         </div>
 
@@ -110,16 +102,13 @@ export default function Home() {
 
       {/* CTA */}
       <div className="cta-section fade-in-up">
-        <h2>Ready to get started?</h2>
-        <p>Download the latest release and follow the guide — you'll be up and running in minutes.</p>
+        <h2>Explore the ecosystem</h2>
+        <p>Browse projects, use tools, or dive into the docs to learn more.</p>
+
         <div className="cta-actions">
-          <GlassButton to="/download" variant="primary">
-            <Icon name="download" size={16} />
-            Get the Latest Release
-          </GlassButton>
-          <GlassButton to="/install" variant="ghost">
+          <GlassButton to="/tools" variant="primary">
             <Icon name="tool" size={16} />
-            Installation Guide
+            Tools
           </GlassButton>
         </div>
       </div>
