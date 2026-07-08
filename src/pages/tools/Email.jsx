@@ -17,6 +17,9 @@ export default function EmailGuide() {
   const [email, setEmail] = useState(params.get("email") || "");
   const [name, setName] = useState(params.get("name") || "");
   const [password, setPassword] = useState(params.get("password") || "");
+  const provider = params.get("provider") || "cloudflare";
+
+  
 
   // Parsed email
   const [username, setUsername] = useState("");
@@ -169,14 +172,26 @@ export default function EmailGuide() {
               <FaqAccordion
                 q="1. Forwarding Setup"
                 a={
-                  <>
-                    <p>
-                      Before you can receive mail using your domain, forwarding must be
-                      enabled. You can do this by logging into the Cloudflare Dashboard and navigating to the Email Routing section.
-                      You will receive a Cloudflare verification email — open it
-                      and approve the forwarding request.
-                    </p>
-                  </>
+                  provider === "hungernet" ? (
+                    <>
+                      <p>
+                        Before you can receive mail using your domain, forwarding must be
+                        enabled. DM me your email address and I will set this up for you.
+                        You will receive a Cloudflare verification email — open it
+                        and approve the forwarding request.
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p>
+                        Before you can receive mail using your domain, forwarding must be
+                        enabled. You can do this by logging into the Cloudflare Dashboard
+                        and navigating to the Email Routing section. You will receive a
+                        Cloudflare verification email — open it and approve the forwarding
+                        request.
+                      </p>
+                    </>
+                  )
                 }
               />
 
@@ -240,11 +255,20 @@ export default function EmailGuide() {
               <FaqAccordion
                 q="5. Finished"
                 a={
-                  <>
-                    <p>
-                      You can now send mail from <strong>{email}</strong>.
-                    </p>
-                  </>
+                  provider === "hungernet" ? (
+                    <>
+                      <p>
+                        You can now send mail from <strong>{email}</strong> using{" "}
+                        <strong>HungerNet's</strong> email service.
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p>
+                        You can now send mail from <strong>{email}</strong>.
+                      </p>
+                    </>
+                  )
                 }
               />
             </div>
