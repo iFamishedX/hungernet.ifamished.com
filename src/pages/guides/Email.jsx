@@ -109,7 +109,7 @@ export default function EmailGuide() {
               <InputBox
                 value={password}
                 onChange={setPassword}
-                placeholder="SMTP Password (cfut_...)"
+                placeholder="API Token (cfut_...)"
               />
             </div>
 
@@ -163,8 +163,9 @@ export default function EmailGuide() {
                     <p>Enter:</p>
                     <ul>
                       <li>Name: <strong>{name}</strong></li>
-                      <li>Email: <strong>{email}</strong></li>
+                      <li>Email address: <strong>{email}</strong></li>
                       <li>Uncheck “Treat as an alias”</li>
+                      <li>Click "Next Step"</li>
                     </ul>
                   </>
                 }
@@ -179,7 +180,7 @@ export default function EmailGuide() {
                       <CopyField label="Port" value="465" />
                       <CopyField label="Username" value="api_token" />
                       <CopyField label="Password" value={password} />
-                      <CopyField label="Security" value="SSL" />
+                      <CopyField label="Security" value="Secured connection using SSL" />
                     </div>
 
                     <p style={{ marginTop: "var(--space-3)" }}>
@@ -196,7 +197,7 @@ export default function EmailGuide() {
                   <>
                     <p>
                       You can now send mail from <strong>{email}</strong> directly through
-                      Gmail using Cloudflare’s SMTP service.
+                      Gmail using <strong>HungerNet's</strong> email service.
                     </p>
                   </>
                 }
