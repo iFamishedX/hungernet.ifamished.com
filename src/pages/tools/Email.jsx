@@ -83,7 +83,7 @@ export default function EmailGuide() {
   };
 
   const reset = () => {
-    navigate("/tools/email");
+    navigate(`/tools/email?provider=${provider}`);
     setEmail("");
     setName("");
     setPassword("");
