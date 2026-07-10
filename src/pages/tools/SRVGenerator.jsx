@@ -14,7 +14,7 @@ export default function SRVGenerator() {
   const navigate = useNavigate();
 
   // Fields
-  const [subdomain, setSubdomain] = useState(params.get("subdomain") || "");
+  const [endDomain, setEndDomain] = useState(params.get("endDomain") || "");
   const [hostname, setHostname] = useState(params.get("hostname") || "");
   const [port, setPort] = useState(params.get("port") || "");
 
@@ -23,11 +23,12 @@ export default function SRVGenerator() {
   const [showErrors, setShowErrors] = useState(false);
 
   // Validation
-  const validSub = /^[a-zA-Z0-9.-]+$/.test(subdomain);
+  const validEndDomain = /^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\.(?!-)[A-Za-z0-9-]{1,63}(?<!-))*$/.test(endDomain);
+  const subdomain = endDomain.split(".")[0];
   const validHost = /^[a-zA-Z0-9.-]+$/.test(hostname);
   const validPort = /^\d+$/.test(port) && Number(port) > 0 && Number(port) <= 65535;
 
-  const ready = validSub && validHost && validPort;
+  const ready = validEndDomain && validHost && validPort;
 
   const generate = () => {
     if (!ready) {
@@ -36,7 +37,7 @@ export default function SRVGenerator() {
     }
 
     setParams({
-      subdomain,
+      endDomain,
       hostname,
       port,
     });
@@ -45,8 +46,8 @@ export default function SRVGenerator() {
   };
 
   const reset = () => {
-    navigate("/tools/srv");
-    setSubdomain("");
+    navigate("/tools/srv-generator");
+    setEndDomain("");
     setHostname("");
     setPort("");
     setGenerated(false);
@@ -72,12 +73,12 @@ export default function SRVGenerator() {
               <div className="input-field">
                 <div className="input-wrapper">
                   <InputBox
-                    value={subdomain}
-                    onChange={setSubdomain}
-                    placeholder="Subdomain (play.example.com)"
+                    value={endDomain}
+                    onChange={setEndDomain}
+                    placeholder="End domain (play.example.com)"
                   />
-                  {showErrors && !validSub && (
-                    <div className="input-error">Invalid subdomain</div>
+                  {showErrors && !validEndDomain && (
+                    <div className="input-error">Invalid domain</div>
                   )}
                 </div>
               </div>
@@ -122,7 +123,7 @@ export default function SRVGenerator() {
               <div className="section-label">SRV Record</div>
               <h2>Your Configuration</h2>
               <p>
-                SRV record for <strong>{subdomain}</strong>.
+                SRV record for <strong>{endDomain}</strong>.
               </p>
             </div>
 
@@ -135,13 +136,12 @@ export default function SRVGenerator() {
 
                     <div className="smtp-grid">
                       <CopyField label="Type" value="SRV" />
-                      <CopyField label="Service" value="_minecraft" />
-                      <CopyField label="Protocol" value="_tcp" />
-                      <CopyField label="Name" value={subdomain} />
-                      <CopyField label="Target" value={hostname} />
-                      <CopyField label="Port" value={port} />
+                      <CopyField label="Name" value={`_minecraft._tcp.${subdomain}`} />
                       <CopyField label="Priority" value="0" />
                       <CopyField label="Weight" value="0" />
+                      <CopyField label="Port" value={port} />
+                      <CopyField label="Target" value={hostname} />
+                      <CopyField label="TTL" value="Auto" />
                     </div>
 
                     <p style={{ marginTop: "var(--space-3)" }}>
@@ -171,7 +171,7 @@ export default function SRVGenerator() {
                   <>
                     <p>
                       Players can now join using{" "}
-                      <strong>{subdomain.replace(/\.$/, "")}</strong> without typing a port.
+                      <strong>{endDomain.replace(/\.$/, "")}</strong> without typing a port.
                     </p>
                   </>
                 }

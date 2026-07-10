@@ -7,7 +7,7 @@ import SRVGenerator from "./pages/tools/SRVGenerator"
 
 const navItems = [
   { to: "/", label: "Home", end: true },
-  { to: "/tools/email", label: "Email Guide" },
+  { to: "/tools/email", label: "Email Setup" },
   { to: "/tools/srv-generator", label: "SRV Generator" },
 ]
 
