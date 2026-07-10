@@ -25,6 +25,7 @@ export default function SRVGenerator() {
   // Validation
   const validEndDomain = /^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\.(?!-)[A-Za-z0-9-]{1,63}(?<!-))*$/.test(endDomain);
   const subdomain = endDomain.split(".")[0];
+  const rootDomain = endDomain.split(".").slice(1).join(".");
   const validHost = /^[a-zA-Z0-9.-]+$/.test(hostname);
   const validPort = /^\d+$/.test(port) && Number(port) > 0 && Number(port) <= 65535;
 
@@ -132,7 +133,7 @@ export default function SRVGenerator() {
                 q="1. DNS Record"
                 a={
                   <>
-                    <p>Add a new SRV record in Cloudflare DNS:</p>
+                    <p>Add a new DNS record for {rootDomain} in Cloudflare:</p>
 
                     <div className="smtp-grid">
                       <CopyField label="Type" value="SRV" />
