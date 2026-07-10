@@ -96,7 +96,7 @@ export default function SRVGenerator() {
                   <InputBox
                     value={hostname}
                     onChange={setHostname}
-                    placeholder="Target Host (mc.example.com)"
+                    placeholder="Target Host (172.0.0.1)"
                   />
                   {showErrors && !validHost && (
                     <div className="input-error">Invalid hostname</div>
