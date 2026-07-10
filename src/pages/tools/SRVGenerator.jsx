@@ -22,6 +22,13 @@ export default function SRVGenerator() {
   const [generated, setGenerated] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
 
+  // Auto-generate if URL params exist
+  useEffect(() => {
+    if (params.get("endDomain") && params.get("hostname") && params.get("port")) {
+      setGenerated(true);
+    }
+  }, []);
+
   // Validation
   const validEndDomain = /^(?!-)[A-Za-z0-9-]{1,63}(?<!-)(\.(?!-)[A-Za-z0-9-]{1,63}(?<!-))*$/.test(endDomain);
   const subdomain = endDomain.split(".")[0];
