@@ -124,7 +124,7 @@ export default function SRVGenerator() {
               <div className="section-label">SRV Record</div>
               <h2>Your Configuration</h2>
               <p>
-                SRV record for <strong>{endDomain}</strong>.
+                Set up an SRV record for <strong>{rootDomain}</strong>.
               </p>
             </div>
 
@@ -133,7 +133,7 @@ export default function SRVGenerator() {
                 q="1. DNS Record"
                 a={
                   <>
-                    <p>Add a new DNS record for {rootDomain} in Cloudflare:</p>
+                    <p>Add a new DNS record for <strong>{rootDomain}</strong> in Cloudflare:</p>
 
                     <div className="smtp-grid">
                       <CopyField label="Type" value="SRV" />
